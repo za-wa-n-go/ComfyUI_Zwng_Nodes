@@ -10,3 +10,16 @@ The active window functions as the Image, and the selection range acts as the ma
 ### Preview Image & Mask
 A simple preview node that overlays a mask onto an image.
 It is useful when combined with the Simple Photoshop Connector.
+
+
+
+### Load Image Path
+パスから直接画像を読み込むためのノード。
+
+### Simple Photoshop Connector
+Photoshopをリモート接続する簡単なノード。Photoshopの編集＞環境設定＞プラグインからリモート接続を有効にして、ノードに記載したパスワードと同じパスワードを入力すれば使用できます。
+アクティブウィンドウがImage、選択範囲がmaskとして機能します。
+
+### Preview Image & Mask
+Imageにmaskを重ねてプレビューできるシンプルなプレビューノードです。
+Simple Photoshop Connectorと組み合わせると便利です。
