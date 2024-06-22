@@ -1,25 +1,3 @@
-# import torch, os, sys, subprocess, random, math, hashlib, json, time, requests, re, tempfile, base64, subprocess
-# import torch.nn as nn
-# import torchvision.transforms as transforms
-# import numpy as np
-# from PIL import Image, ImageFilter, ImageEnhance, ImageOps, ImageDraw, ImageChops
-# from PIL.PngImagePlugin import PngInfo
-# from urllib.request import urlopen
-# from io import BytesIO
-
-# import comfy.samplers
-# import comfy.sd
-# import comfy.utils
-# import importlib
-# import nodes
-
-# from nodes import MAX_RESOLUTION, SaveImage
-# from comfy_extras.nodes_mask import ImageCompositeMasked
-# from comfy.cli_args import args
-# from comfy.utils import ProgressBar, common_upscale
-# import model_management
-
-
 import torch, os, sys, re, tempfile, folder_paths, random
 import numpy as np
 import comfy.samplers
@@ -117,7 +95,7 @@ class ZwngSimplePsConnections:
         }
 
     RETURN_TYPES = ("IMAGE", "MASK")
-    RETURN_NAMES = ("Photoshop Active Window", "Mask")
+    RETURN_NAMES = ("Photoshop Active Window", "Selection to Mask")
     FUNCTION = "PS_Execute"
     CATEGORY = "ZWNG"
 
