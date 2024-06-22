@@ -1,4 +1,4 @@
-<img width="425" alt="image" src="https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes/assets/118154415/022e7e2e-1a3e-4b73-a488-d626d5bd6e03">
+<img width="425" alt="image" src="https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes/assets/118154415/b344f321-688a-4776-b99d-0d5e6d8ba667">
 
 ### Load Image Path
 Node to load images directly from a path.
