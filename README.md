@@ -10,9 +10,10 @@ The active window functions as the Image, and the selection range acts as the ma
 ### Preview Image & Mask
 A simple preview node that overlays a mask onto an image.
 It is useful when combined with the Simple Photoshop Connector.
-
-
-
+<br>
+<br>
+## にほんごVer
+    
 ### Load Image Path
 パスから直接画像を読み込むためのノード。
 
