@@ -95,9 +95,9 @@ class ZwngSimplePsConnections:
         }
 
     RETURN_TYPES = ("IMAGE", "MASK")
-    RETURN_NAMES = ("Photoshop Active Window", "Selection to Mask")
+    RETURN_NAMES = ("Active Window", "Selection to Mask")
     FUNCTION = "PS_Execute"
-    CATEGORY = "ZWNG"
+    CATEGORY = "WFSnodes/Image"
 
     def PS_Execute(self, password, Server):
         Selection_To_Mask = True
@@ -105,7 +105,7 @@ class ZwngSimplePsConnections:
         
         try:
             from photoshop import PhotoshopConnection
-        except:
+        except ImportError:
             subprocess.run(["python", "-m", "pip", "uninstall", "photoshop"], check=True)
             subprocess.run(["python", "-m", "pip", "uninstall", "photoshop-connection"], check=True)
             subprocess.run(["python", "-m", "pip", "install", "photoshop-connection"], check=True)
@@ -119,28 +119,49 @@ class ZwngSimplePsConnections:
         Maskscript = f'''
         function main() {{
             try {{
-                var e = app.activeDocument;
-                var a = e.selection.bounds;
-                var t = e.activeHistoryState;
-                var i = e.artLayers.add();
-                var s = new SolidColor();
-                var r = e.artLayers.add();
-                var l = new SolidColor();
-                var c = new File("{self.MaskDir}");
-                var n = new JPEGSaveOptions();
-                s.rgb.hexValue = "000000";
-                l.rgb.hexValue = "FFFFFF";
-                e.activeLayer = r;
-                e.selection.fill(l);
-                e.activeLayer = i;
-                e.selection.selectAll();
-                e.selection.fill(s);
-                n.quality = 1;
-                e.saveAs(c, n, true);
-                e.activeHistoryState = t;
+                var doc = app.activeDocument;
+                var hasSelection = true;
+                try {{
+                    var bounds = doc.selection.bounds; // Check if there is a selection
+                }} catch (e) {{
+                    hasSelection = false; // No selection present
+                }}
+
+                var t = doc.activeHistoryState;
+                var layerMask = doc.artLayers.add();
+                
+                if (!hasSelection) {{
+                    doc.selection.selectAll(); // Select all if no selection is present
+                    var whiteColor = new SolidColor();
+                    whiteColor.rgb.hexValue = "FFFFFF";
+                    doc.activeLayer = layerMask;
+                    doc.selection.fill(whiteColor);
+                }} else {{
+                    var s = new SolidColor();
+                    var r = doc.artLayers.add();
+                    var l = new SolidColor();
+                    s.rgb.hexValue = "000000";
+                    l.rgb.hexValue = "FFFFFF";
+                    doc.activeLayer = r;
+                    doc.selection.fill(l);
+                    doc.activeLayer = layerMask;
+                    doc.selection.selectAll();
+                    doc.selection.fill(s);
+                }}
+
+                var maskFile = new File("{self.MaskDir}");
+                var saveOptions = new JPEGSaveOptions();
+                saveOptions.quality = 1;
+                doc.saveAs(maskFile, saveOptions, true);
+                doc.activeHistoryState = t;
+
+                if (!hasSelection) {{
+                    doc.selection.deselect(); // Deselect if there was no initial selection
+                }}
+
             }} catch (y) {{
+                alert("Error in mask creation: " + y.toString());
                 File("{self.MaskDir}").remove();
-                console.log("Error in mask creation: " + y.toString());
             }}
         }}
         app.activeDocument.suspendHistory("Mask Applied", "main()");
@@ -162,15 +183,14 @@ class ZwngSimplePsConnections:
         self.width, self.height = self.i.size
         
         if Selection_To_Mask:
-            self.loadImg(self.MaskDir)
-            self.i = ImageOps.exif_transpose(self.i)
-            self.mask = np.array(self.i.getchannel('B')).astype(np.float32) / 255.0
-            self.mask = torch.from_numpy(self.mask)
-        else:
-            self.i = Image.new(mode='RGB', size=(1, 1), color=(0, 0, 0))
-            self.i = ImageOps.exif_transpose(self.i)
-            self.mask = np.array(self.i.getchannel('B')).astype(np.float32) / 255.0
-            self.mask = torch.from_numpy(self.mask)
+            if not os.path.exists(self.MaskDir):
+                print("Mask file does not exist, creating a white mask.")
+                self.mask = torch.ones((1, self.height, self.width), dtype=torch.float32)
+            else:
+                self.loadImg(self.MaskDir)
+                self.i = ImageOps.exif_transpose(self.i)
+                self.mask = np.array(self.i.getchannel('B')).astype(np.float32) / 255.0
+                self.mask = torch.from_numpy(self.mask)
 
     def loadImg(self, path):
         try:
