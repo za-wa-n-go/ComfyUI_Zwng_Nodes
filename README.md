@@ -1,4 +1,4 @@
-<img width="425" alt="image" src="https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes/assets/118154415/b344f321-688a-4776-b99d-0d5e6d8ba667">
+<img width="467" alt="image" src="https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes/assets/118154415/b4ebaad2-866b-42a0-9070-6b18defd557a">
 
 ### Load Image Path
 Node to load images directly from a path.It might be useful to combine it with the Preview Bridge (Image) node.
@@ -10,6 +10,10 @@ The active window functions as the Image, and the selection range acts as the ma
 ### Preview Image & Mask
 A simple preview node that overlays a mask onto an image.
 It is useful when combined with the Simple Photoshop Connector.
+
+### Simple Google Translater
+It uses googletrans and, while it is free, it has low stability and a character limit of 15k. 
+However, it provides the necessary and sufficient functionality.
 <br>
 <br>
 ## にほんごVer
@@ -24,3 +28,6 @@ Photoshopをリモート接続する簡単なノード。Photoshopの編集＞�
 ### Preview Image & Mask
 Imageにmaskを重ねてプレビューできるシンプルなプレビューノードです。
 Simple Photoshop Connectorと組み合わせると便利です。
+
+### Simple Google Translater
+googletransを利用しており、無料である反面、安定性が低く、文字数は15kまでの制限があります。しかし、必要十分な機能を提供します。
