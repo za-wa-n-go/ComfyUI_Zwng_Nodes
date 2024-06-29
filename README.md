@@ -2,6 +2,7 @@
 
 ### Load Image Path
 Node to load images directly from a path.It might be useful to combine it with the Preview Bridge (Image) node.
+Not only paths but also loading from URLs is possible.
 
 ### Simple Photoshop Connector
 A simple node for remote connecting to Photoshop. Enable remote connections in Photoshop by going to Edit > Preferences > Plugins, and then input the same password as mentioned in the node to use it.
@@ -20,6 +21,7 @@ However, it provides the necessary and sufficient functionality.
     
 ### Load Image Path
 パスから直接画像を読み込むためのノード。Preview Bridge (Image)ノードと組み合わせたりすると便利かも。
+パスだけでなくURLからの読み込みも可能となっています。
 
 ### Simple Photoshop Connector
 Photoshopをリモート接続する簡単なノード。Photoshopの編集＞環境設定＞プラグインからリモート接続を有効にして、ノードに記載したパスワードと同じパスワードを入力すれば使用できます。
