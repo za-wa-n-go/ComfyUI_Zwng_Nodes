@@ -33,7 +33,7 @@ class ZwngSimplePsConnections:
     RETURN_TYPES = ("IMAGE", "MASK")
     RETURN_NAMES = ("Active Window", "Selection to Mask")
     FUNCTION = "PS_Execute"
-    CATEGORY = "WFSnodes/Image"
+    CATEGORY = "ZWNG"
 
     def PS_Execute(self, password, Server):
         Selection_To_Mask = True

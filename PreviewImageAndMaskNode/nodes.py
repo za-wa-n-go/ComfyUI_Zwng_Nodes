@@ -38,7 +38,7 @@ class ZwngPreviewImageAndMask(SaveImage):
         }
     
     FUNCTION = "execute"
-    CATEGORY = "WFSnodes/Image"
+    CATEGORY = "ZWNG"
 
     def execute(self, mask_opacity, filename_prefix="ComfyUI", image=None, mask=None, prompt=None, extra_pnginfo=None):
         mask_color = (255, 0, 0) 

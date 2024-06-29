@@ -37,49 +37,23 @@ def translate(prompt, srcTrans='auto', toTrans='en'):
             print(f"Translation error: {e}")
     return translate_text_prompt
 
-class ZwngTranslateCLIPTextEncodeNode:
-    
+class ZwngSimpleGoogleTranslater:
+
     @classmethod
     def INPUT_TYPES(self):
         return {
             "required": {
-                "from_translate": (['auto']+list(LANGUAGES.keys()), {"default": "auto"}),
+                "from_translate": (['auto'] + list(LANGUAGES.keys()), {"default": "auto"}),
                 "to_translate": (list(LANGUAGES.keys()), {"default": "en"}),
                 "manual_translate": ([True, False], {"default": False}),
                 "text": ("STRING", {"multiline": True, "placeholder": "Input prompt"}),
-                "clip": ("CLIP",)
             }
         }
-
-    RETURN_TYPES = ("CONDITIONING", "STRING",)
-    FUNCTION = "translate_text"
-    CATEGORY = "ZWNG/conditioning"
-
-    def translate_text(self, **kwargs):
-        from_translate = kwargs.get("from_translate")
-        to_translate = kwargs.get("to_translate")
-        manual_translate = kwargs.get("manual_translate", False)
-        text = kwargs.get("text")
-        clip = kwargs.get("clip")
-              
-        text_translated = translate(text, from_translate, to_translate) if not manual_translate else text
-        tokens = clip.tokenize(text_translated)
-        cond, pooled = clip.encode_from_tokens(tokens, return_pooled=True)
-        return ([[cond, {"pooled_output": pooled}]], text_translated)
-
-class ZwngSimpleGoogleTranslater(ZwngTranslateCLIPTextEncodeNode):
-
-    @classmethod
-    def INPUT_TYPES(self):
-        return_types = super().INPUT_TYPES()
-        del return_types["required"]["clip"]
-        return return_types
 
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("text",)
     FUNCTION = "translate_text"
-
-    CATEGORY = "ZWNG/text"
+    CATEGORY = "ZWNG"
 
     def translate_text(self, **kwargs):
         from_translate = kwargs.get("from_translate")
@@ -89,9 +63,6 @@ class ZwngSimpleGoogleTranslater(ZwngTranslateCLIPTextEncodeNode):
               
         text_translated = translate(text, from_translate, to_translate) if not manual_translate else text
         return (text_translated,)
-    
-### =====  Translate Nodes [googletrans module] -> end ===== ###
-
 
 NODE_CLASS_MAPPINGS = {
     'ZwngSimpleGoogleTranslater': ZwngSimpleGoogleTranslater,
