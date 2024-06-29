@@ -1,18 +1,12 @@
-import torch, os, sys, re, tempfile, folder_paths, random
+import torch
+import os
+import sys
+import re
+import hashlib
+import requests
 import numpy as np
-import comfy.samplers
-import comfy.utils
-import nodes
-
-from PIL import Image, ImageOps
+from PIL import Image
 from io import BytesIO
-from urllib.request import urlopen
-from nodes import MAX_RESOLUTION, SaveImage
-from comfy.utils import ProgressBar, common_upscale
-from comfy_extras.nodes_mask import ImageCompositeMasked
-
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "comfy"))
-sys.path.append('../ComfyUI')
 
 class ZwngLoadImagePathOrURL:
     def __init__(self):
