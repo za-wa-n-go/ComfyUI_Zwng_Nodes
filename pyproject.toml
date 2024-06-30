@@ -1,0 +1,14 @@
+[project]
+name = "comfyui_zwng_nodes"
+description = "Simple nodes for loading image files.Nodes that include a simple remote connection to Photoshop, a node that can overlay and preview an image with a mask, and a node that can load images directly from a file path."
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI_Zwng_Nodes"
+Icon = ""
