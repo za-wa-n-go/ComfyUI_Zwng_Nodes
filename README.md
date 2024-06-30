@@ -1,4 +1,4 @@
-<img width="467" alt="image" src="https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes/assets/118154415/b4ebaad2-866b-42a0-9070-6b18defd557a">
+<img width="521" alt="image" src="https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes/assets/118154415/1eafc4ac-4dbf-4b2a-802c-721930d216bf">
 
 ### Load Image Path or URL
 Node to load images directly from a path.It might be useful to combine it with the Preview Bridge (Image) node.  
