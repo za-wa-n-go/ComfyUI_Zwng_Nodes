@@ -1,6 +1,6 @@
 <img width="467" alt="image" src="https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes/assets/118154415/b4ebaad2-866b-42a0-9070-6b18defd557a">
 
-### Load Image Path
+### Load Image Path or URL
 Node to load images directly from a path.It might be useful to combine it with the Preview Bridge (Image) node.  
 Not only paths but also loading from URLs is possible.
 <br>
@@ -19,7 +19,7 @@ However, it provides the necessary and sufficient functionality.
 
 ## にほんごVer
     
-### Load Image Path
+### Load Image Path or URL
 パスから直接画像を読み込むためのノード。Preview Bridge (Image)ノードと組み合わせたりすると便利かも。  
 パスだけでなくURLからの読み込みも可能となっています。
 <br>
