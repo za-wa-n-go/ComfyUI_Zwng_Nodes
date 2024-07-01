@@ -1,6 +1,6 @@
 [project]
 name = "comfyui_zwng_nodes"
-description = "Simple nodes for loading image files.Nodes that include a simple remote connection to Photoshop, a node that can overlay and preview an image with a mask, and a node that can load images directly from a file path."
+description = "A set of simple nodes for loading image files and basic translation. These include a simple remote connection node to Photoshop, a node that can overlay and preview an image using a mask, and nodes that can load images directly from file paths and URLs."
 version = "1.0.0"
 license = "LICENSE"
 
