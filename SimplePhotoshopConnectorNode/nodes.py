@@ -67,11 +67,11 @@ class ZwngSimplePsConnections:
                 var layerMask = doc.artLayers.add();
                 
                 if (!hasSelection) {{
-                    doc.selection.selectAll(); // Select all if no selection is present
-                    var whiteColor = new SolidColor();
-                    whiteColor.rgb.hexValue = "FFFFFF";
+                    var s = new SolidColor();
+                    doc.selection.selectAll();
+                    s.rgb.hexValue = "000000";
                     doc.activeLayer = layerMask;
-                    doc.selection.fill(whiteColor);
+                    doc.selection.fill(s);
                 }} else {{
                     var s = new SolidColor();
                     var r = doc.artLayers.add();
