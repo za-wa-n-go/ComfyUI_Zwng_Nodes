@@ -2,7 +2,7 @@
 name = "comfyui_zwng_nodes"
 description = "A set of simple nodes for loading image files and basic translation. These include a simple remote connection node to Photoshop, a node that can overlay and preview an image using a mask, nodes that can load images directly from file paths and URLs, and a node capable of using Google Translate."
 version = "1.0.0"
-license = "LICENSE"
+license = { file = "LICENSE" }
 
 [project.urls]
 Repository = "https://github.com/za-wa-n-go/ComfyUI_Zwng_Nodes"
